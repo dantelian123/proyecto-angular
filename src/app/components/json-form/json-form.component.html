@@ -1,4 +1,3 @@
-
 <div class="container justify-conten-center col-sm-4">
   <h1 class="text-center">Formulario</h1>
   <div class="row justify-conten-center">
@@ -68,3 +67,81 @@
     </form>
   </div>
 </div>
+<!-- <mat-stepper [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="myForm">
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="">
+      <ng-template matStepLabel>Fill out your name</ng-template>
+      <div *ngFor="let control of jsonFormData?.controls">
+        <mat-form-field appearance="fill">
+          <mat-label class="form-label" *ngIf="control.label !== ''">
+            {{ control.label }}
+          </mat-label>
+          <input
+            matInput
+            required
+            class="form-control"
+            *ngIf="
+              [
+                'text',
+                'password',
+                'email',
+                'number',
+                'search',
+                'tel',
+                'url'
+              ].includes(control.type)
+            "
+            [type]="control.type"
+            [formControlName]="control.name"
+            [value]="control.value"
+          />
+          <input
+            matInput
+            class="form-control"
+            rows="3"
+            type="textarea"
+            *ngIf="control.type === 'textarea'"
+            [formControlName]="control.name"
+            [value]="control.value"
+          />
+
+          <input
+            matInput
+            class="form-check-input"
+            type="checkbox"
+            *ngIf="control.type === 'checkbox'"
+            [formControlName]="control.name"
+            [checked]="control.value"
+          />
+
+          <input
+            matInput
+            class="form-check-input"
+            type="checkbox"
+            *ngIf="control.type === 'toggle'"
+            [formControlName]="control.name"
+            [checked]="control.value"
+          />
+          <mat-slider *ngIf="control.type === 'range'">
+            <input
+              matSliderThumb
+              type="range"
+              *ngIf="control.type === 'range'"
+              class="form-range"
+              [min]="control.options?.min"
+              [max]="control.options?.max"
+              [formControlName]="control.name"
+            />
+          </mat-slider>
+        </mat-form-field>
+        <!-- <i
+        size="small"
+        slot="start"
+        [name]="control.options.icon"
+      ></i>
+      <i slot="end" [name]="control.options.icon"></i>  
+      </div>
+      <input type="submit" expand="full" type="submit" value="Submit" />
+    </form>
+  </mat-step>
+</mat-stepper> -->

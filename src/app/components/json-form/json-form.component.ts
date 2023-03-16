@@ -1,5 +1,6 @@
 import { Component, OnInit, Input,OnChanges, SimpleChanges } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
 interface JsonFormValidators {
   min?: number;
   max?: number;
@@ -36,6 +37,7 @@ export interface JsonFormData {
 })
 export class JsonFormComponent implements OnInit{
   @Input() jsonFormData!: JsonFormData;
+  isLinear:boolean = true;
   public myForm: FormGroup = this.fb.group({});
   constructor(private fb: FormBuilder) { }
   ngOnChanges(changes: SimpleChanges) {
