@@ -1,0 +1,65 @@
+{
+  "controls": [
+    {
+      "name": "firstName",
+      "label": "Primer nombre:",
+      "value": "",
+      "type": "text",
+      "validators": {
+        "required": true,
+        "minLength": 10
+      }
+    },
+    {
+      "name": "lastName",
+      "label": "Apellido:",
+      "value": "",
+      "type": "text",
+      "validators": {
+        "required": true,
+        "minLength": 10
+      }
+    },
+    {
+      "name": "password",
+      "label": "Contraseña",
+      "value": "",
+      "type": "password",
+      "validators": {}
+    },
+    {
+      "name": "comments",
+      "label": "Comentario",
+      "value": "",
+      "type": "textarea",
+      "validators": {}
+    },
+    {
+      "name": "agreeTerms",
+      "label": "Marcar Casilla?",
+      "value": "false",
+      "type": "checkbox",
+      "validators": {}
+    },
+    {
+      "name": "size",
+      "label": "",
+      "value": "",
+      "type": "range",
+      "options": {
+        "min": "0",
+        "max": "100",
+        "step": "1",
+        "icon": "sunny"
+      },
+      "validators": {}
+    },
+    {
+      "name": "lightDark",
+      "label": "Activar Toggle?",
+      "value": "false",
+      "type": "toggle",
+      "validators": {}
+    }
+  ]
+}

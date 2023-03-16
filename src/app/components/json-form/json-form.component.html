@@ -1,0 +1,70 @@
+
+<div class="container justify-conten-center col-sm-4">
+  <h1 class="text-center">Formulario</h1>
+  <div class="row justify-conten-center">
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="">
+      <div *ngFor="let control of jsonFormData?.controls">
+        <label class="form-label" *ngIf="control.label !== ''">
+          {{ control.label }}
+        </label>
+        <input
+          class="form-control"
+          *ngIf="
+            [
+              'text',
+              'password',
+              'email',
+              'number',
+              'search',
+              'tel',
+              'url'
+            ].includes(control.type)
+          "
+          [type]="control.type"
+          [formControlName]="control.name"
+          [value]="control.value"
+        />
+        <input
+          class="form-control"
+          rows="3"
+          type="textarea"
+          *ngIf="control.type === 'textarea'"
+          [formControlName]="control.name"
+          [value]="control.value"
+        />
+
+        <input
+          class="form-check-input"
+          type="checkbox"
+          *ngIf="control.type === 'checkbox'"
+          [formControlName]="control.name"
+          [checked]="control.value"
+        />
+
+        <input
+          class="form-check-input"
+          type="checkbox"
+          *ngIf="control.type === 'toggle'"
+          [formControlName]="control.name"
+          [checked]="control.value"
+        />
+
+        <input
+          type="range"
+          class="form-range"
+          *ngIf="control.type === 'range'"
+          [min]="control.options?.min"
+          [max]="control.options?.max"
+          [formControlName]="control.name"
+        />
+        <!-- <i
+        size="small"
+        slot="start"
+        [name]="control.options.icon"
+      ></i>
+      <i slot="end" [name]="control.options.icon"></i> -->
+      </div>
+      <input type="submit" expand="full" type="submit" value="Submit" />
+    </form>
+  </div>
+</div>
