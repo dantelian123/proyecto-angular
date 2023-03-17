@@ -1,4 +1,4 @@
-import { EmpleadoService } from './../../empleado.service';
+import { EmpleadoService } from './../../services/empleado.service';
 import { Component, OnInit } from '@angular/core';
 import { Empleado } from 'src/app/model/Persona.model';
 import { ActivatedRoute, Router } from '@angular/router';
