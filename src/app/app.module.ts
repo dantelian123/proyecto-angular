@@ -13,12 +13,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //import { MatSliderModule } from "@angular/material/slider";
 import { EmpleadoComponent } from './components/empleado/empleado.component';
 import { FormularioPersonaComponent } from './components/formulario-persona/formulario-persona.component';
+import { AngularJsonFormModule } from 'angular-json-form';
+import { LoginComponent } from './components/login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
     JsonFormComponent,
     EmpleadoComponent,
-    FormularioPersonaComponent
+    FormularioPersonaComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +29,7 @@ import { FormularioPersonaComponent } from './components/formulario-persona/form
     CommonModule,
     HttpClientModule,
     ReactiveFormsModule,
+    AngularJsonFormModule,
     //MatStepperModule,
    // MatFormFieldModule,
     //MatInputModule,

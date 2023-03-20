@@ -15,9 +15,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.http.get('../assets/form.json')
     .subscribe((formData)=>{
-      console.log(formData);
       this.formData = formData;
-      console.log(this.formData);
     })
   }
   title = 'Formulario';

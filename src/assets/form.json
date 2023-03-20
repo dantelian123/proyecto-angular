@@ -1,8 +1,8 @@
 {
   "controls": [
     {
-      "name": "firstName",
-      "label": "Primer nombre:",
+      "name": "nombre",
+      "label": "Nombre:",
       "value": "",
       "type": "text",
       "validators": {
@@ -11,7 +11,7 @@
       }
     },
     {
-      "name": "lastName",
+      "name": "apellido",
       "label": "Apellido:",
       "value": "",
       "type": "text",
@@ -21,44 +21,31 @@
       }
     },
     {
-      "name": "password",
-      "label": "Contraseña",
+      "name": "cedula",
+      "label": "Cedula:",
       "value": "",
-      "type": "password",
+      "type": "text",
       "validators": {}
     },
     {
-      "name": "comments",
-      "label": "Comentario",
+      "name": "telefono",
+      "label": "Telefono",
       "value": "",
-      "type": "textarea",
+      "type": "text",
       "validators": {}
     },
     {
-      "name": "agreeTerms",
-      "label": "Marcar Casilla?",
-      "value": "false",
-      "type": "checkbox",
-      "validators": {}
-    },
-    {
-      "name": "size",
-      "label": "",
+      "name": "edad",
+      "label": "Edad",
       "value": "",
-      "type": "range",
-      "options": {
-        "min": "0",
-        "max": "100",
-        "step": "1",
-        "icon": "sunny"
-      },
+      "type": "number",
       "validators": {}
     },
     {
-      "name": "lightDark",
-      "label": "Activar Toggle?",
-      "value": "false",
-      "type": "toggle",
+      "name": "fechaNac",
+      "label": "Fecha de Nacimiento",
+      "value": "",
+      "type": "date",
       "validators": {}
     }
   ]

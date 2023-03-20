@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <div class="container">
     <div class="row m-2 d-flex justify-content-center">
       <div class="card" style="width: 25rem">
@@ -68,12 +68,12 @@
               role="button"
               class="btn btn-success"
               (click)="create()"
-              *ngIf="!empleado.codigo else elseBlock"
+              *ngIf="!empleado.codigo; else elseBlock"
               [routerLink]="['']"
             >
               Enviar
             </button>
-            <ng-template #elseBlock >
+            <ng-template #elseBlock>
               <button
                 role="button"
                 class="btn btn-success"
@@ -87,5 +87,147 @@
         </div>
       </div>
     </div>
+  </div>
+</div> -->
+<!--------------------------->
+<!-- <div class="container justify-conten-center col-sm-4">
+  <h1 class="text-center">Formulario</h1>
+  <div class="row justify-conten-center">
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="">
+      <div *ngFor="let control of jsonFormData?.controls">
+        <label class="form-label" *ngIf="control.label !== ''">
+          {{ control.label}}
+          {{ control.value }}
+        </label>
+        <input
+          class="form-control"
+          *ngIf="
+            [
+              'text',
+              'password',
+              'email',
+              'number',
+              'search',
+              'tel',
+              'url',
+              'date'
+            ].includes(control.type)
+          "
+          [type]="control.type"
+          [formControlName]="control.name"
+          [value]="control.value"
+          [placeholder]="control.name"
+        />
+        <p>{{control.value }}</p>
+        <!-- <i
+        size="small"
+        slot="start"
+        [name]="control.options.icon"
+      ></i>
+      <i slot="end" [name]="control.options.icon"></i>
+      </div>
+      <input type="submit" expand="full" type="submit" value="Submit" (click)="guardar()"/>
+    </form>
+  </div>
+</div> -->
+<div class="container">
+  <div class="m-2 d-flex justify-content-center">
+    <div class="d-flex justify-content-center">
+      <button role="button" class="btn btn-success" [routerLink]="['']">
+        Volver
+      </button>
+    </div>
+    <angular-json-form
+      *ngIf="!empleado.codigo; else elseBlock"
+      [form]="form"
+      (send)="handleValues($event)"
+    ></angular-json-form>
+    <ng-template #elseBlock>
+      <div class="card" style="width: 25rem">
+        <div class="card-body">
+          <form>
+            <div class="from-group mb-6">
+              <label for="" class="form-label">Nombre</label>
+              <input
+                type="text"
+                name="nombre"
+                class="form-control"
+                placeholder="Nombre"
+                [(ngModel)]="empleado.nombre"
+              />
+            </div>
+            <div class="from-group mb-3">
+              <label for="" class="form-label">Apellido</label>
+              <input
+                type="text"
+                name="apellido"
+                class="form-control"
+                placeholder="Apellido"
+                [(ngModel)]="empleado.apellido"
+              />
+            </div>
+            <div class="from-group mb-3">
+              <label for="" class="form-label">Cedula</label>
+              <input
+                type="text"
+                name="cedula"
+                class="form-control"
+                placeholder="Cedula"
+                [(ngModel)]="empleado.cedula"
+              />
+            </div>
+            <div class="from-group mb-3">
+              <label for="" class="form-label">Edad</label>
+              <input
+                type="number"
+                name="edad"
+                class="form-control"
+                placeholder="Edad"
+                [(ngModel)]="empleado.edad"
+              />
+            </div>
+            <div class="from-group mb-3">
+              <label for="" class="form-label">Telefono</label>
+              <input
+                type="text"
+                name="telefono"
+                class="form-control"
+                placeholder="Telefono"
+                [(ngModel)]="empleado.telefono"
+              />
+            </div>
+            <div class="from-group mb-3">
+              <label for="" class="form-label">Fecha de Nacimiento</label>
+              <input
+                type="date"
+                name="fechaNac"
+                class="form-control"
+                placeholder="Fecha de nacimiento"
+                [(ngModel)]="empleado.fechaNac"
+              />
+            </div>
+            <button
+              role="button"
+              class="btn btn-success"
+              (click)="create()"
+              *ngIf="!empleado.codigo; else elseBlock"
+              [routerLink]="['']"
+            >
+              Enviar
+            </button>
+            <ng-template #elseBlock>
+              <button
+                role="button"
+                class="btn btn-success"
+                (click)="update()"
+                [routerLink]="['']"
+              >
+                Actualizar
+              </button>
+            </ng-template>
+          </form>
+        </div>
+      </div>
+    </ng-template>
   </div>
 </div>

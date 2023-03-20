@@ -10,7 +10,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class EmpleadoComponent implements OnInit {
   empleados?:Empleado[];
+
   ngOnInit(): void {
+    console.log();
+
     this.servicioEmpleado.get().subscribe(
       empleado=>{
         this.empleados=empleado;
