@@ -13,7 +13,6 @@ export class EmpleadoComponent implements OnInit {
 
   ngOnInit(): void {
     console.log();
-
     this.servicioEmpleado.get().subscribe(
       empleado=>{
         this.empleados=empleado;
@@ -23,12 +22,16 @@ export class EmpleadoComponent implements OnInit {
     );
   }
   constructor(private servicioEmpleado: EmpleadoService, private router: Router,
-    private activateroute: ActivatedRoute){
+    private activateroute: ActivatedRoute, private empleadoService:EmpleadoService){
 
   }
   delete(id?:number):void{
     this.servicioEmpleado.delete(id).subscribe(
       e => this.ngOnInit()
     )
+  }
+  public logOut() {
+    this.empleadoService.logOut();
+    this.router.navigate(['/login'])
   }
 }

@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { credentials } from './../model/credenciales.model';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Empleado } from '../model/Persona.model';
 
 @Injectable({
@@ -31,5 +32,24 @@ export class EmpleadoService {
     console.log(this.url + '/' + id);
 
     return this.http.delete<Empleado>(this.url+'/'+id,);
+  }
+  login(creds:credentials){
+    return this.http.post("http://localhost:8090/login", creds, {
+      observe:'response'
+    }).pipe(map((response:HttpResponse<any>)=>{
+      const body = response.body;
+      const headers = response.headers
+      const bearerToken = headers.get('Authorization')!;
+      const token  = bearerToken.replace('Bearer ', '');
+
+      localStorage.setItem('token', token);
+      return body;
+    }));
+  }
+  getToken(){
+    return localStorage.getItem('token');
+  }
+  logOut(){
+    localStorage.removeItem('token');
   }
 }
