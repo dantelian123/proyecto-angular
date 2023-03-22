@@ -6,4 +6,5 @@ export interface Empleado{
   edad?:number;
   telefono?:string;
   fechaNac?:Date;
+  ciudad?:string;
 }

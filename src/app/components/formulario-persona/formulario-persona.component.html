@@ -141,6 +141,7 @@
       *ngIf="!empleado.codigo; else elseBlock"
       [form]="form"
       (send)="handleValues($event)"
+      (event)="handleEvent($event)"
     ></angular-json-form>
     <ng-template #elseBlock>
       <div class="card" style="width: 25rem">
@@ -197,13 +198,23 @@
               />
             </div>
             <div class="from-group mb-3">
-              <label for="" class="form-label">Fecha de Nacimiento</label>
+              <label for="" class="form-label">Ciudad</label>
               <input
                 type="date"
                 name="fechaNac"
                 class="form-control"
                 placeholder="Fecha de nacimiento"
                 [(ngModel)]="empleado.fechaNac"
+              />
+            </div>
+            <div class="from-group mb-3">
+              <label for="" class="form-label">Ciudad</label>
+              <input
+                type="text"
+                name="cedula"
+                class="form-control"
+                placeholder="Cedula"
+                [(ngModel)]="empleado.ciudad"
               />
             </div>
             <button
