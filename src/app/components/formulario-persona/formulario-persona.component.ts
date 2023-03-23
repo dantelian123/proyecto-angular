@@ -72,7 +72,7 @@ export class FormularioPersonaComponent implements OnInit {
             name: "Provincia",
             type: "select",
             label: "Provincias",
-            options: ["Guayas", "Pichincha"],
+            options: ["Guayas", "Pichincha", "Azuay"],
           },
           {
             name: "ciudad",
@@ -197,44 +197,34 @@ export class FormularioPersonaComponent implements OnInit {
   //Comprueba que ciudades se muestran en la lista segun la provincia escogida
   comprobarCiudades(event: any): string {
     var rule = { "var": event['value'] }
-    var data = { "Guayas": "guayas", "Pichincha": "pichincha" };
+    var data = { "Guayas": "Guayas", "Pichincha": "Pichincha", "Azuay":"Azuay" };
     return jsonLogic.apply(rule, data);
   }
 
   //Obtiene el evento del form json
   handleEvent(event: any) {
-    console.log(this.cantones["Provincia"]["GUAYAS"]["cantones"]["nombre_canton"]);
-    //let cantones = Object.entries(this.cantones[1][0])
-    //console.log(cantones);
-
-    let cantonesGuayas = ["Guayaquil", "Duran", "Milagro", "Naranjal"]
-    let cantonesPichincha = ["Quito", "Cayambe", "Machachi", "Mejía"]
-    if (event.event == "onChange" && this.comprobarCiudades(event) == "guayas") {
-      //cantones = cantones[9];
-      this.form['groups'][5]['fields'][1] = {
-        name: "ciudad",
-        type: "select",
-        label: "Ciudad:",
-        options: [],
-        optionsView: [],
-        selected: true,
-        error: false
+  //  console.log(Object.entries(this.cantones));
+    let arreglos = Object.entries(this.cantones["Provincia"])
+    //console.log(arreglos[0]);
+    arreglos.forEach((datos, indice) => {
+      console.log(datos[0])
+      console.log(indice);
+      //debugger;
+      if (event.event == "onChange" && this.comprobarCiudades(event) == datos[0]) {
+        this.form['groups'][5]['fields'][1] = {
+          name: "ciudad",
+          type: "select",
+          label: "Ciudad:",
+          options: [],
+          optionsView: [],
+          selected: true,
+          error: false
+        }
+        this.form['groups'][5]['fields'][1].options = this.cantones["Provincia"][`${datos[0]}`]["cantones"]["nombre_canton"];
+        this.form['groups'][5]['fields'][1].optionsView = this.cantones["Provincia"][`${datos[0]}`]["cantones"]["nombre_canton"];
       }
-      this.form['groups'][5]['fields'][1].options = this.cantones["Provincia"]["GUAYAS"]["cantones"]["nombre_canton"];
-      this.form['groups'][5]['fields'][1].optionsView = this.cantones["Provincia"]["GUAYAS"]["cantones"]["nombre_canton"];
-    } else if (event.event == "onChange" && this.comprobarCiudades(event) == "pichincha") {
-      this.form['groups'][5]['fields'][1] = {
-        name: "ciudad",
-        type: "select",
-        label: "Ciudad:",
-        options: [],
-        optionsView: [],
-        selected: true,
-        error: false
-      }
-      this.form['groups'][5]['fields'][1].options = this.cantones["Provincia"]["PICHINCHA"]["cantones"]["nombre_canton"];
-      this.form['groups'][5]['fields'][1].optionsView = this.cantones["Provincia"]["PICHINCHA"]["cantones"]["nombre_canton"];
     }
+    )
 
   }
 
@@ -243,12 +233,10 @@ export class FormularioPersonaComponent implements OnInit {
   obtenerDatos() {
     axios.get(this.url).then(
       response => {
-       // console.log(response.data)
+        console.log(response);
+        console.log(response.data)
         this.cantones = response.data
-
       }
-
-
     )
   }
 

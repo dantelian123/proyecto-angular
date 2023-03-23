@@ -1,18 +1,18 @@
 {
   "Provincia":{
-    "GUAYAS":{
+    "Guayas":{
       "nombre_provincia":"Guayas",
       "cantones":{
         "nombre_canton":["Guayaquil","Duran", "Milagro", "Juján", "Balao"]
       }
     },
-    "PICHINCHA":{
+    "Pichincha":{
       "nombre_provincia":"Pichincha",
       "cantones":{
         "nombre_canton":["Rocafuerte","Santa Ana", "Quito"]
       }
     },
-    "AZUAY":{
+    "Azuay":{
       "nombre_provincia":"Azuay",
       "cantones":{
         "nombre_canton":["Cuenca","Giron", "Gualaceo"]

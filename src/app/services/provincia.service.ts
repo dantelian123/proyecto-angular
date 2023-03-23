@@ -12,8 +12,7 @@ export class ProvinciaService {
 
   getDatos(){
     axios.get(this.url)
-      .then(function (response) {
-
+      .then(function (response)  {
         console.log(response.data);
         return response.data
       })
