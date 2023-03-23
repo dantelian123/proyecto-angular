@@ -1,11 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { ProvinciaService } from './../../services/provincia.service';
 import { Empleado } from './../../model/Persona.model';
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { EmpleadoService } from 'src/app/services/empleado.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as jsonLogic from 'json-logic-js/';
-
+import axios from 'axios';
 @Component({
   selector: 'app-formulario-persona',
   templateUrl: './formulario-persona.component.html',
@@ -93,15 +93,16 @@ export class FormularioPersonaComponent implements OnInit {
       },
     ],
   }
-
+  cantones: any;
   empleado: Empleado = {};
   constructor(private empleadoService: EmpleadoService, private router: Router,
-    private activateroute: ActivatedRoute, private http: HttpClient, private fb: FormBuilder) {
+    private activateroute: ActivatedRoute, private provinciaService: ProvinciaService, private fb: FormBuilder) {
   }
 
   //Carga los datos en el formulario si se inicia el formulario para editar empleado
   ngOnInit(): void {
     this.cargar()
+    this.obtenerDatos();
   }
 
   //Metodo para insertar empleado (Actualmente no se esta usando)
@@ -143,7 +144,7 @@ export class FormularioPersonaComponent implements OnInit {
   }
 
   //Obtiene los valores del formulario json al hacer submit
-   //Metodo para insertar empleado (Actualmente se esta usando)
+  //Metodo para insertar empleado (Actualmente se esta usando)
   handleValues(values: any) {
     //setea los valores del atributo empleado con los valores ingresados en el formulario
     this.empleado = values;
@@ -202,29 +203,53 @@ export class FormularioPersonaComponent implements OnInit {
 
   //Obtiene el evento del form json
   handleEvent(event: any) {
+    console.log(this.cantones["Provincia"]["GUAYAS"]["cantones"]["nombre_canton"]);
+    //let cantones = Object.entries(this.cantones[1][0])
+    //console.log(cantones);
 
+    let cantonesGuayas = ["Guayaquil", "Duran", "Milagro", "Naranjal"]
+    let cantonesPichincha = ["Quito", "Cayambe", "Machachi", "Mejía"]
     if (event.event == "onChange" && this.comprobarCiudades(event) == "guayas") {
-      console.log(this.form);
+      //cantones = cantones[9];
       this.form['groups'][5]['fields'][1] = {
         name: "ciudad",
         type: "select",
         label: "Ciudad:",
-        options: ["Guayaquil", "Duran", "Milagro", "Naranjal"],
-        optionsView: ["Guayaquil", "Duran", "Milagro", "Naranjal"],
+        options: [],
+        optionsView: [],
         selected: true,
         error: false
       }
+      this.form['groups'][5]['fields'][1].options = this.cantones["Provincia"]["GUAYAS"]["cantones"]["nombre_canton"];
+      this.form['groups'][5]['fields'][1].optionsView = this.cantones["Provincia"]["GUAYAS"]["cantones"]["nombre_canton"];
     } else if (event.event == "onChange" && this.comprobarCiudades(event) == "pichincha") {
       this.form['groups'][5]['fields'][1] = {
         name: "ciudad",
         type: "select",
         label: "Ciudad:",
-        options: ["Quito", "Cayambe", "Machachi", "Mejía"],
-        optionsView: ["Quito", "Cayambe", "Machachi", "Mejía"],
+        options: [],
+        optionsView: [],
         selected: true,
         error: false
       }
+      this.form['groups'][5]['fields'][1].options = this.cantones["Provincia"]["PICHINCHA"]["cantones"]["nombre_canton"];
+      this.form['groups'][5]['fields'][1].optionsView = this.cantones["Provincia"]["PICHINCHA"]["cantones"]["nombre_canton"];
     }
 
   }
+
+  url: string = "http://localhost:4200/assets/provincia.json";
+
+  obtenerDatos() {
+    axios.get(this.url).then(
+      response => {
+       // console.log(response.data)
+        this.cantones = response.data
+
+      }
+
+
+    )
+  }
+
 }

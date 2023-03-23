@@ -2,6 +2,7 @@ import { EmpleadoService } from './../../services/empleado.service';
 import { Component, OnInit } from '@angular/core';
 import { Empleado } from 'src/app/model/Persona.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ProvinciaService } from 'src/app/services/provincia.service';
 
 @Component({
   selector: 'app-empleado',
@@ -12,7 +13,7 @@ export class EmpleadoComponent implements OnInit {
   empleados?:Empleado[];
 
   ngOnInit(): void {
-    console.log();
+    this.provinciaService.getDatos();
     this.servicioEmpleado.get().subscribe(
       empleado=>{
         this.empleados=empleado;
@@ -22,7 +23,7 @@ export class EmpleadoComponent implements OnInit {
     );
   }
   constructor(private servicioEmpleado: EmpleadoService, private router: Router,
-    private activateroute: ActivatedRoute, private empleadoService:EmpleadoService){
+    private provinciaService: ProvinciaService, private empleadoService:EmpleadoService){
 
   }
   delete(id?:number):void{
